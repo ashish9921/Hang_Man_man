@@ -1,5 +1,6 @@
 import pygame
 import math
+import random
 
 pygame.init()
 
@@ -57,7 +58,8 @@ for i in range(6):
 
 
 hangman_status=0
-words="DEVELOPER"
+words=["ASHISH","DEVIL","RASHMIKA"]
+words=random.choice(words)
 guessed=[]
     
 
@@ -101,7 +103,7 @@ def draw():
             display_word+=latter+" "
         else:
             display_word+="_"+" "
-    text_screen(display_word,(0,0,0),400,400)
+    text_screen(display_word,(0,0,0),420,400)
 
     for le in latters:
         x,y, lt =le
@@ -121,6 +123,8 @@ def display_message(message):
     window.blit(text, (500,500))
     pygame.display.update()
     pygame.time.delay(3000)
+    pygame.quit()
+     
 
 def loop():
     run =True
@@ -149,6 +153,7 @@ def loop():
                         guessed.append(lt)
                         if lt not in words:
                             hangman_status+=1
+                          
 
         
         
@@ -161,11 +166,14 @@ def loop():
         
         if won:
             display_message("You Won!")
+            
             break
 
         if hangman_status ==6:
             display_message("You LOST!")
-            break    
+            break 
+        
+
 
 
 welcome()
